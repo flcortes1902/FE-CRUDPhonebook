@@ -1,0 +1,49 @@
+<div class="title">
+    <h1> New Record</h1>
+</div>
+
+<div class="container">
+    <mat-card class="card">
+        <mat-card-subtitle>
+            Record Data
+        </mat-card-subtitle>
+        <form [formGroup]="form" (ngSubmit)="addContact()">
+            <mat-grid-list cols="2" rowHeight="80px">
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input formControlName="FirstName" matInput placeholder="Placeholder">
+                      </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input formControlName="LastName" matInput placeholder="Placeholder">
+                      </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Phone number</mat-label>
+                        <input type="number" formControlName="PhoneNumber" matInput placeholder="Placeholder">
+                        <mat-icon matSuffix>phone</mat-icon>
+                      </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Text Comments</mat-label>
+                        <input formControlName="TextComments" matInput placeholder="Placeholder">
+                      </mat-form-field>
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" >
+                    <button [disabled]="form.invalid" type="submit" mat-button color="primary">Ok</button>
+                    <button routerLink="/phones" mat-button>Back</button>  
+                </mat-grid-tile>
+
+            </mat-grid-list>      
+        </form>
+    </mat-card>
+</div>

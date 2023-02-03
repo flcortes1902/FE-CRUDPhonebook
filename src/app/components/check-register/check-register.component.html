@@ -1,0 +1,18 @@
+<div class="title">
+    <h1>Check Number</h1>
+</div>
+
+<div *ngIf="Contact != null" class="container">
+    <mat-card class="card">
+        <mat-card-title>{{ Contact.FirstName }}</mat-card-title>
+        <mat-card-content>
+            <p><strong>Last Name:</strong>{{ Contact.LastName }}</p>
+            <p><strong>Phone number:</strong> {{ Contact.PhoneNumber }}</p>
+            <p><strong>Text comments:</strong> {{Contact.TextComments}} </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button routerLink="/phones" mat-raised-button>Back</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+

@@ -10,6 +10,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: white;
 }
 
-.container {
-    margin: 0 20%
+
+.mt-10 {
+  margin-top: 10px;
 }

@@ -1,14 +1,8 @@
 <div class="title">
-    <h1> New Record</h1>
+    <h1> {{ operation }} Contact </h1>
 </div>
-
-<div class="container">
-    <mat-card class="card">
-        <mat-card-subtitle>
-            Record Data
-        </mat-card-subtitle>
-        <form [formGroup]="form" (ngSubmit)="addContact()">
-            <mat-grid-list cols="2" rowHeight="80px">
+        <form [formGroup]="form" (ngSubmit)="saveContact()">
+            <mat-grid-list class="mt-10" cols="1"  [rowHeight]="85">
                 <mat-grid-tile>
                     <mat-form-field appearance="outline">
                         <mat-label>First Name</mat-label>
@@ -38,12 +32,10 @@
                       </mat-form-field>
                 </mat-grid-tile>
 
-                <mat-grid-tile [colspan]="2" >
-                    <button [disabled]="form.invalid" type="submit" mat-button color="primary">Ok</button>
-                    <button routerLink="/phones" mat-button>Back</button>  
-                </mat-grid-tile>
+                <mat-grid-tile >
+                  <button [disabled]="form.invalid" type="submit" mat-button color="primary">Ok</button>
+                  <button type="button" (click)="onBack()" mat-button>Back</button>
+              </mat-grid-tile>
 
-            </mat-grid-list>      
+            </mat-grid-list>
         </form>
-    </mat-card>
-</div>

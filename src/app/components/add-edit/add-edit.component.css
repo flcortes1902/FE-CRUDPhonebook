@@ -2,11 +2,12 @@
     margin-top: 10px;
 }
 
-.mat-form-field {
-    width: 100%;
-    margin: 5px;
+mat-form-field {
+  width: 100%;
 }
+
 
 .btnAceptar {
     margin-right: 5px;
 }
+

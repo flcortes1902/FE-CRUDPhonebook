@@ -2,19 +2,42 @@
     <h1>Phone book</h1>
 </div>
 
+<ng-template #addOrEditContact let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">{{ operationType }} Contact</h4>
+	</div>
+	<div class="modal-body">
+     <app-add-edit-contact [id]="selectedId" (operationTypeEV)="onOperationTypeEVChange($event)" (onSaveForm)="onSaveForm($event)" ></app-add-edit-contact>
+	</div>
+</ng-template>
+
+<ng-template #deleteContact let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Delete Contact</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+    <p>Are you sure you want to delete this contact?</p>
+    <button type="button" class="btn btn-primary" (click)="deleteRecord()">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Cancel</button>
+	</div>
+
+
+
+</ng-template>
 
 <div class="container">
-    <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input autocomplete="off">
-      </mat-form-field>
-  <div class="add"><button routerLink="/phones/add" mat-raised-button color="primary">New Contact</button></div>
+  <div class="mt-10">
+    <mat-form-field  >
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input autocomplete="off">
+    </mat-form-field>
+  </div>
+
+  <div class="add"><button (click)="open(addOrEditContact)" mat-raised-button color="primary">New Contact</button></div>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-      
-
-  
         <!-- First name Column -->
         <ng-container matColumnDef="FirstName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
@@ -42,7 +65,7 @@
           <!-- Search Column -->
           <ng-container matColumnDef="Search">
             <th mat-header-cell *matHeaderCellDef> Search </th>
-            <td mat-cell *matCellDef="let element"> 
+            <td mat-cell *matCellDef="let element">
                 <mat-icon routerLink="/phones/check/{{ element.Id }}" class="search" fontIcon="search"></mat-icon>
             </td>
           </ng-container>
@@ -50,16 +73,18 @@
            <!-- Edit Column -->
            <ng-container matColumnDef="Edit">
             <th mat-header-cell *matHeaderCellDef> Edit </th>
-            <td mat-cell *matCellDef="let element"> 
-                <mat-icon routerLink="/phones/edit/{{ element.Id }}"  class="edit" fontIcon="edit"></mat-icon>
+            <td mat-cell *matCellDef="let element">
+
+                <mat-icon  class="edit" fontIcon="edit" (click)="onEditContact(addOrEditContact, element.Id)"></mat-icon>
+
             </td>
           </ng-container>
-      
+
            <!-- Delete Column -->
            <ng-container matColumnDef="Delete">
             <th mat-header-cell *matHeaderCellDef> Delete </th>
-            <td mat-cell *matCellDef="let element"> 
-                <mat-icon (click)="deleteRecord(element.Id)" class="delete" fontIcon="delete"></mat-icon>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon (click)="onDeleteContact(element.Id, deleteContact)" class="delete" fontIcon="delete"></mat-icon>
             </td>
           </ng-container>
 
@@ -69,7 +94,9 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
       aria-label="Select page of periodic elements">
-    </mat-paginator> 
+    </mat-paginator>
 </div>
 
-  
+
+
+

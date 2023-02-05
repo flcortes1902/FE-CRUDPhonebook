@@ -16,6 +16,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 // Componentes
 import { ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatGridListModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   exports: [
     MatTableModule,
@@ -46,7 +48,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatGridListModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+
   ]
 })
 export class SharedModule { }

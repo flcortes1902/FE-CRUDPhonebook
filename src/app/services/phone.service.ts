@@ -11,7 +11,7 @@ import { Contact } from '../interfaces/contact';
 export class PhoneService {
 
   private myAppUrl: string = environment.endpoint;
-  private myApiUrl: string = 'api/Phonebook/';
+  private myApiUrl: string = 'api/phones';
 
   constructor(private http: HttpClient) { }
 
@@ -20,19 +20,19 @@ export class PhoneService {
   }
 
   getOneContact(id: number): Observable<Contact> {
-    return this.http.get<Contact>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+    return this.http.get<Contact>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
   }
 
   deleteContact(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`);
   }
 
-  addContact(Contact: Contact): Observable<Contact> {
-    return this.http.post<Contact>(`${this.myAppUrl}${this.myApiUrl}`, Contact);
+  addContact(contact: Contact): Observable<Contact> {
+    return this.http.post<Contact>(`${this.myAppUrl}${this.myApiUrl}`, contact);
   }
 
-  updateContact(id: number, Contact: Contact): Observable<void> {
-    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, Contact);
+  updateContact(id: number, contact: Contact): Observable<void> {
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}/${id}`, contact);
   }
 }
 
